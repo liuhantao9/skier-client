@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class SkierClientMainPart2 {
-  private static final int DEFAULT_MAX_THREAD = 256,
+  private static final int DEFAULT_MAX_THREAD = 32,
       DEFAULT_NUM_SKIERS = 40000,
       DEFAULT_NUM_SKI_LIFT = 40,
       DEFAULT_MIN_LIFT = 5,
@@ -63,11 +63,7 @@ public class SkierClientMainPart2 {
     submitTask("three", part);
     while (taskMap.size() > numThread * 0.9);
 
-    if (part.equals("first")) {
-      stats.getFirstResult();
-    } else {
       stats.getSecondResult();
-    }
   }
 
   private static void submitTask(String phase, String part) {

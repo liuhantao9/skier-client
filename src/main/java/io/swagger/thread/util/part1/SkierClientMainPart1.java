@@ -63,11 +63,7 @@ public class SkierClientMainPart1 {
     submitTask("three", part);
     while (taskMap.size() > numThread * 0.9);
 
-    if (part.equals("first")) {
       stats.getFirstResult();
-    } else {
-      stats.getSecondResult();
-    }
   }
 
   private static void submitTask(String phase, String part) {
