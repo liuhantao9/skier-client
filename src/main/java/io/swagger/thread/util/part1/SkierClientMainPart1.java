@@ -1,17 +1,13 @@
-package io.swagger.thread.util;
+package io.swagger.thread.util.part1;
 
-import com.sun.org.apache.xpath.internal.operations.Bool;
 import io.swagger.thread.model.Data;
 import io.swagger.thread.model.Statistics;
 import io.swagger.thread.thread.SkierClientRunnable;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-public class SkierClientMain {
+public class SkierClientMainPart1 {
   private static final int DEFAULT_MAX_THREAD = 256,
       DEFAULT_NUM_SKIERS = 40000,
       DEFAULT_NUM_SKI_LIFT = 40,
@@ -36,7 +32,7 @@ public class SkierClientMain {
   private static ExecutorService executor = Executors.newFixedThreadPool(DEFAULT_MAX_THREAD);
   private static Statistics stats = new Statistics();
 
-  public SkierClientMain() {
+  public SkierClientMainPart1() {
     this.numThread = this.DEFAULT_MAX_THREAD;
     this.numSkiers = this.DEFAULT_NUM_SKIERS;
     this.numSkiLift = this.DEFAULT_NUM_SKI_LIFT;
@@ -46,15 +42,13 @@ public class SkierClientMain {
   }
 
   public static void main(String[] args) {
-    SkierClientMain scm = new SkierClientMain();
+    SkierClientMainPart1 scm = new SkierClientMainPart1();
     // parse arguments
     parseArgs(args);
 
     // Run first analysis
     runAnalysis("first");
 
-    // Run the second analysis
-//    runAnalysis("second");
     executor.shutdown();
   }
 
