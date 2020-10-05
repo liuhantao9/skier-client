@@ -12,8 +12,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class SkierClientMain {
-  private static final int DEFAULT_MAX_THREAD = 64,
-      DEFAULT_NUM_SKIERS = 20000,
+  private static final int DEFAULT_MAX_THREAD = 256,
+      DEFAULT_NUM_SKIERS = 40000,
       DEFAULT_NUM_SKI_LIFT = 40,
       DEFAULT_MIN_LIFT = 5,
       DEFAULT_SKI_DAY = 1,
