@@ -3,22 +3,72 @@ package io.swagger.thread.model;
 import java.util.Objects;
 
 public class Data {
-  private int numPost, numGet, minDay, maxDay, minLiftId, maxLiftId, minSkierId, maxSkierId;
-  private String address, resortID, port;
+  private int numPost, numGet, minTime, maxTime, minLiftId, maxLiftId, minSkierId, maxSkierId, day, threadCount;
+  private String address, resortID, port, phase, loadBalancerAddress, option;
 
-  public Data(int numPost, int numGet, int minDay, int maxDay, int minLiftId, int maxLiftId,
-      int minSkierId, int maxSkierId, String address, String resortID, String port) {
+  public Data(int numPost, int numGet, int minTime, int maxTime, int minLiftId, int maxLiftId,
+      int minSkierId, int maxSkierId, String address, String resortID, String port, int day, int threadCount,
+      String phase, String loadBalancerAddress, String option
+  ) {
     this.numPost = numPost;
     this.numGet = numGet;
-    this.minDay = minDay;
-    this.maxDay = maxDay;
+    this.minTime = minTime;
+    this.maxTime = maxTime;
     this.minLiftId = minLiftId;
     this.maxLiftId = maxLiftId;
     this.minSkierId = minSkierId;
     this.maxSkierId = maxSkierId;
-    this.address = address;
+    this.option = option;
+    if (option.equals("single-instance")) {
+      this.address = address + port;
+    } else {
+      this.address = loadBalancerAddress;
+    }
     this.resortID = resortID;
     this.port = port;
+    this.day = day;
+    this.threadCount = threadCount;
+    this.phase = phase;
+  }
+
+  public int getDay() {
+    return day;
+  }
+
+  public void setDay(int day) {
+    this.day = day;
+  }
+
+  public String getOption() {
+    return option;
+  }
+
+  public void setOption(String option) {
+    this.option = option;
+  }
+
+  public String getLoadBalancerAddress() {
+    return loadBalancerAddress;
+  }
+
+  public void setLoadBalancerAddress(String loadBalancerAddress) {
+    this.loadBalancerAddress = loadBalancerAddress;
+  }
+
+  public int getThreadCount() {
+    return threadCount;
+  }
+
+  public String getPhase() {
+    return phase;
+  }
+
+  public void setPhase(String phase) {
+    this.phase = phase;
+  }
+
+  public void setThreadCount(int threadCount) {
+    this.threadCount = threadCount;
   }
 
   public String getPort() {
@@ -37,12 +87,12 @@ public class Data {
     return numGet;
   }
 
-  public int getMinDay() {
-    return minDay;
+  public int getMinTime() {
+    return minTime;
   }
 
-  public int getMaxDay() {
-    return maxDay;
+  public int getMaxTime() {
+    return maxTime;
   }
 
   public int getMinLiftId() {
@@ -77,12 +127,12 @@ public class Data {
     this.numGet = numGet;
   }
 
-  public void setMinDay(int minDay) {
-    this.minDay = minDay;
+  public void setMinTime(int minTime) {
+    this.minTime = minTime;
   }
 
-  public void setMaxDay(int maxDay) {
-    this.maxDay = maxDay;
+  public void setMaxTime(int maxTime) {
+    this.maxTime = maxTime;
   }
 
   public void setMinLiftId(int minLiftId) {
@@ -120,8 +170,8 @@ public class Data {
     Data data = (Data) o;
     return numPost == data.numPost &&
         numGet == data.numGet &&
-        minDay == data.minDay &&
-        maxDay == data.maxDay &&
+        minTime == data.minTime &&
+        maxTime == data.maxTime &&
         minLiftId == data.minLiftId &&
         maxLiftId == data.maxLiftId &&
         minSkierId == data.minSkierId &&
@@ -134,7 +184,7 @@ public class Data {
   @Override
   public int hashCode() {
     return Objects
-        .hash(numPost, numGet, minDay, maxDay, minLiftId, maxLiftId, minSkierId, maxSkierId,
+        .hash(numPost, numGet, minTime, maxTime, minLiftId, maxLiftId, minSkierId, maxSkierId,
             address,
             resortID, port);
   }
@@ -144,8 +194,8 @@ public class Data {
     return "Data{" +
         "numPost=" + numPost +
         ", numGet=" + numGet +
-        ", minDay=" + minDay +
-        ", maxDay=" + maxDay +
+        ", minTime=" + minTime +
+        ", maxTime=" + maxTime +
         ", minLiftId=" + minLiftId +
         ", maxLiftId=" + maxLiftId +
         ", minSkierId=" + minSkierId +
